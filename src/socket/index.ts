@@ -1,17 +1,9 @@
-import { Server as HttpServer } from 'http'
 import { Server, Socket } from 'socket.io'
 
 import { TicTacToeActionsEnum } from '@entityTypes/socket'
 import initTicTacToeSocket from './ticTacToe/ticTacToeSocket'
 
-const initSocket: (httpServer: HttpServer) => HttpServer = (httpServer: HttpServer) => {
-    const io: Server = new Server(httpServer, {
-        cors: {
-            origin: '*',
-            methods: ['GET', 'POST'],
-        },
-    })
-
+const initSocket: (io: Server) => void = (io: Server) => {
     io.on('connection', (socket: Socket) => {
         // console.log(socket.request.connection.remoteAddress)
 
@@ -27,8 +19,6 @@ const initSocket: (httpServer: HttpServer) => HttpServer = (httpServer: HttpServ
             }
         })
     })
-
-    return httpServer
 }
 
 export default initSocket

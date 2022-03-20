@@ -21,8 +21,13 @@
         "paths": {
             "@constants/*": ["common/constants/*"],
             "@services/*": ["common/services/*"],
+            "@db": ["common/tools/db"],
             "@entityTypes/*": ["common/types/*"],
             "@utils/*": ["common/utils/*"],
+            "@controllers/*": ["controllers/*"],
+            "@models/*": ["models/*"],
+            "@routes/*": ["routes/*"],
+            "@socket/*": ["socket/*"],
         }
     },
     "include": [
