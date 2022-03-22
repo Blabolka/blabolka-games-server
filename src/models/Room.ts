@@ -1,5 +1,5 @@
 import { Schema, model, Model } from 'mongoose'
-import { v4 as uuidv4 } from 'uuid'
+import shortid from 'shortid'
 
 import { RoomModelType, RoomTypesEnum } from '@entityTypes/room'
 
@@ -7,7 +7,7 @@ const schema: Schema = new Schema(
     {
         roomId: {
             type: String,
-            default: uuidv4(),
+            default: shortid.generate,
         },
         roomType: {
             type: String,

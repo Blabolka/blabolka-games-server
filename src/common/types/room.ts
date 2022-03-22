@@ -6,15 +6,15 @@ export type RoomModelType = {
 } & RoomBase
 
 export type RoomBase = {
-    roomType: TicTacToeGridSizesEnum
+    roomType: RoomTypesEnum
     roomInfo: TicTacToeRoomParams
     isPrivate: boolean
     password?: string
 }
 
-export type TicTacToeRoomParams = {
+type TicTacToeRoomParams = {
     gridSize: TicTacToeGridSizesEnum
-    valuesInRowToWin: number
+    valuesInRowToFinish: number
 }
 
 export enum RoomTypesEnum {
