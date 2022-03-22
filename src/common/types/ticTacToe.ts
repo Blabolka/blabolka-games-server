@@ -1,19 +1,25 @@
-export enum CellValuesEnum {
+export enum TicTacToeCellValuesEnum {
     X = 'X',
     O = 'O',
 }
 
-type CellPosition = {
+type TicTacToeCellPosition = {
     rowIndex: number
     columnIndex: number
 }
 
-type CellProps = {
+type TicTacToeCellProps = {
     isClicked: boolean
-    value: CellValuesEnum | null
+    value: TicTacToeCellValuesEnum | null
 }
 
 export type CellFullData = {
-    cellPosition: CellPosition
-    cellData: CellProps
+    cellPosition: TicTacToeCellPosition
+    cellData: TicTacToeCellProps
+}
+
+export enum TicTacToeGridSizesEnum {
+    THREE_BY_THREE = '3x3',
+    FIVE_BY_FIVE = '5x5',
+    SEVEN_BY_SEVEN = '7x7',
 }

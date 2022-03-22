@@ -1,8 +1,8 @@
-import { CellValuesEnum } from '@entityTypes/ticTacToe'
+import { TicTacToeCellValuesEnum } from '@entityTypes/ticTacToe'
 
 export type TicTacToePlayer = {
     id: string
-    value: CellValuesEnum
+    value: TicTacToeCellValuesEnum
     isTurnToStartGame: boolean
 }
 

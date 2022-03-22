@@ -21,7 +21,8 @@
         "mongoose": "^6.2.7",
         "path": "^0.12.7",
         "rimraf": "^3.0.2",
-        "socket.io": "^4.4.1"
+        "socket.io": "^4.4.1",
+        "uuid": "^8.3.2"
     },
     "devDependencies": {
         "@types/node": "^17.0.21",
@@ -39,6 +40,7 @@
         "@constants": "dist/common/constants",
         "@services": "dist/common/services",
         "@db": "dist/common/tools/db",
+        "@db-api": "dist/common/tools/databaseApi",
         "@entityTypes": "dist/common/types",
         "@utils": "dist/common/utils",
         "@controllers": "dist/controllers",

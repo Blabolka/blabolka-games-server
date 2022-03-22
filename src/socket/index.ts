@@ -1,6 +1,7 @@
 import { Server, Socket } from 'socket.io'
 
 import { TicTacToeActionsEnum } from '@entityTypes/socket'
+import { RoomTypesEnum } from '@entityTypes/room'
 import initTicTacToeSocket from './ticTacToe/ticTacToeSocket'
 
 const initSocket: (io: Server) => void = (io: Server) => {
@@ -11,7 +12,7 @@ const initSocket: (io: Server) => void = (io: Server) => {
             const { roomId, gameKey }: { roomId: string; gameKey: string } = message
 
             switch (gameKey) {
-                case 'tic-tac-toe':
+                case RoomTypesEnum.TIC_TAC_TOE:
                     initTicTacToeSocket(io, socket, roomId)
                     break
                 default:

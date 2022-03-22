@@ -22,6 +22,7 @@
             "@constants/*": ["common/constants/*"],
             "@services/*": ["common/services/*"],
             "@db": ["common/tools/db"],
+            "@db-api/*": ["common/tools/databaseApi/*"],
             "@entityTypes/*": ["common/types/*"],
             "@utils/*": ["common/utils/*"],
             "@controllers/*": ["controllers/*"],
