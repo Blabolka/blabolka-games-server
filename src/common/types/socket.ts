@@ -7,5 +7,4 @@ export enum TicTacToeActionsEnum {
     PLAYER_MADE_MOVE_FROM_SERVER = 'player-made-move-from-server',
     PLAYER_LEAVE_GAME_FROM_SERVER = 'player-leave-game-from-server',
     PLAYER_WANT_PLAY_AGAIN_FROM_CLIENT = 'player-want-play-again-from-client',
-    PLAYER_WANT_PLAY_AGAIN_FROM_SERVER = 'player-want-play-again-from-server',
 }

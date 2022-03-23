@@ -1,11 +1,11 @@
 import { TicTacToeGridSizesEnum } from '@entityTypes/ticTacToe'
 
-export type RoomModelType = {
+export interface IRoomModel extends IRoomBase {
     _id?: string
     roomId: string
-} & RoomBase
+}
 
-export type RoomBase = {
+export interface IRoomBase {
     roomType: RoomTypesEnum
     roomInfo: TicTacToeRoomParams
     isPrivate: boolean

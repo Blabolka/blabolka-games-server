@@ -1,7 +1,7 @@
 import { Schema, model, Model } from 'mongoose'
 import shortid from 'shortid'
 
-import { RoomModelType, RoomTypesEnum } from '@entityTypes/room'
+import { IRoomModel, RoomTypesEnum } from '@entityTypes/room'
 
 const schema: Schema = new Schema(
     {
@@ -33,6 +33,6 @@ const schema: Schema = new Schema(
     },
 )
 
-const RoomModel: Model<RoomModelType> = model<RoomModelType>('Room', schema)
+const RoomModel: Model<IRoomModel> = model('Room', schema)
 
 export default RoomModel

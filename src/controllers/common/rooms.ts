@@ -1,15 +1,18 @@
 import { Request, Response, NextFunction } from 'express'
-import { createRoom } from '@db-api/room'
+import { getRoomByRoomId, createRoom } from '@db-api/room'
 
-import { RoomBase, RoomModelType } from '@entityTypes/room'
+import { IRoomBase, IRoomModel } from '@entityTypes/room'
 
-export const getRoomById: (req: Request, res: Response, next: NextFunction) => void = (
+export const getRoomById: (req: Request, res: Response, next: NextFunction) => void = async (
     req: Request,
     res: Response,
     next: NextFunction,
 ) => {
     try {
-        res.send('ok')
+        const id: string = req.params.id
+        const room: IRoomModel | null = await getRoomByRoomId(id)
+
+        res.send(room)
     } catch (error) {
         console.log(error)
         next(error)
@@ -22,8 +25,8 @@ export const postRoom: (req: Request, res: Response, next: NextFunction) => Prom
     next: NextFunction,
 ) => {
     try {
-        const roomInfo: RoomBase = req.body
-        const room: RoomModelType = await createRoom(roomInfo)
+        const roomInfo: IRoomBase = req.body
+        const room: IRoomModel = await createRoom(roomInfo)
 
         res.send(room)
     } catch (error) {
