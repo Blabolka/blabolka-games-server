@@ -8,3 +8,7 @@ export const getRoomByRoomId: (roomId: string) => Promise<IRoomModel | null> = a
 export const createRoom: (room: IRoomBase) => Promise<IRoomModel> = async (room: IRoomBase) => {
     return RoomModel.create({ ...room })
 }
+
+export const deleteRoomById: (roomId: string) => Promise<void> = async (roomId: string) => {
+    await RoomModel.deleteOne({ roomId })
+}
