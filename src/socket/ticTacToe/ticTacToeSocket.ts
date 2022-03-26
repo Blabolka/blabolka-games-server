@@ -2,7 +2,7 @@ import { Server, Socket } from 'socket.io'
 import { deleteRoomById } from '@db-api/room'
 import RestartManager from '@services/RestartGameManager'
 
-import { NUMBER_PARTICIPANTS_OF_FULL_TIC_TAC_TOE_ROOM } from '@constants/ticTacToe'
+import { NUMBER_PARTICIPANTS_OF_FULL_TIC_TAC_TOE_ROOM } from '@constants'
 import { TicTacToeActionsEnum } from '@entityTypes/socket'
 import { CellFullData } from '@entityTypes/ticTacToe'
 import { TicTacToePlayer, TicTacToePlayerRoles } from '@entityTypes/ticTacToePlayer'

@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
 import { getRoomByRoomId, createRoom } from '@db-api/room'
 
-import { IRoomBase, IRoomModel } from '@entityTypes/room'
+import { IRoomBaseFromServer, IRoomBaseFromClient, IPrivateRoom } from '@entityTypes/room'
+import { generateHashPassword } from '@utils/room'
 
 export const getRoomById: (req: Request, res: Response, next: NextFunction) => void = async (
     req: Request,
@@ -10,7 +11,7 @@ export const getRoomById: (req: Request, res: Response, next: NextFunction) => v
 ) => {
     try {
         const id: string = req.params.id
-        const room: IRoomModel | null = await getRoomByRoomId(id)
+        const room: IRoomBaseFromServer | null = await getRoomByRoomId(id)
 
         res.send(room)
     } catch (error) {
@@ -25,10 +26,21 @@ export const postRoom: (req: Request, res: Response, next: NextFunction) => Prom
     next: NextFunction,
 ) => {
     try {
-        const roomInfo: IRoomBase = req.body
-        const room: IRoomModel = await createRoom(roomInfo)
+        const room: IRoomBaseFromClient = req.body
 
-        res.send(room)
+        const databaseRoomInfo: IPrivateRoom = {
+            roomType: room.roomType,
+            roomInfo: room.roomInfo,
+            isPrivate: room.isPrivate,
+        }
+
+        if (room.isPrivate && room.password) {
+            databaseRoomInfo.passwordHash = await generateHashPassword(room.password)
+        }
+
+        const createdRoom: IRoomBaseFromServer | null = await createRoom(databaseRoomInfo)
+
+        res.send(createdRoom)
     } catch (error) {
         console.error(error)
         next(error)

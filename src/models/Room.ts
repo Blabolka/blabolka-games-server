@@ -22,7 +22,7 @@ const schema: Schema = new Schema(
             type: Boolean,
             required: true,
         },
-        password: {
+        passwordHash: {
             type: String,
             required: false,
         },
