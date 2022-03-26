@@ -1,6 +1,12 @@
 import { Server } from 'socket.io'
 import { NUMBER_PARTICIPANTS_OF_FULL_TIC_TAC_TOE_ROOM } from '@constants'
 
+export const getNumberOfParticipantsInRoom: (io: Server, roomId: string) => number = (io: Server, roomId: string) => {
+    const participants: Set<string> | undefined = io.sockets.adapter.rooms.get(roomId)
+
+    return participants ? participants.size : 0
+}
+
 export const isTicTacToeRoomFull: (io: Server, roomId: string) => boolean = (io: Server, roomId: string) => {
     const participants: Set<string> | undefined = io.sockets.adapter.rooms.get(roomId)
 

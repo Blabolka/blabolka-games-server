@@ -18,6 +18,14 @@ export interface IPrivateRoom {
 }
 
 // CLIENT INTERFACES
+export interface IRoomBaseFromServerWithParticipants {
+    roomId: string
+    roomType: RoomTypesEnum
+    roomInfo: TicTacToeRoomParams
+    numberOfParticipants: number
+    isPrivate: boolean
+}
+
 export interface IRoomBaseFromServer {
     roomId: string
     roomType: RoomTypesEnum
