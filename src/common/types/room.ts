@@ -1,20 +1,49 @@
 import { TicTacToeGridSizesEnum } from '@entityTypes/ticTacToe'
 
-export type RoomModelType = {
+// SERVER ONLY INTERFACES
+export interface IRoomModel {
     _id?: string
     roomId: string
-} & RoomBase
+    roomType: RoomTypesEnum
+    roomInfo: TicTacToeRoomParams
+    isPrivate: boolean
+    passwordHash?: string
+}
 
-export type RoomBase = {
-    roomType: TicTacToeGridSizesEnum
+export interface IPrivateRoom {
+    roomType: RoomTypesEnum
+    roomInfo: TicTacToeRoomParams
+    isPrivate: boolean
+    passwordHash?: string
+}
+
+// CLIENT INTERFACES
+export interface IRoomBaseFromServerWithParticipants {
+    roomId: string
+    roomType: RoomTypesEnum
+    roomInfo: TicTacToeRoomParams
+    numberOfParticipants: number
+    isPrivate: boolean
+}
+
+export interface IRoomBaseFromServer {
+    roomId: string
+    roomType: RoomTypesEnum
+    roomInfo: TicTacToeRoomParams
+    isPrivate: boolean
+}
+
+export interface IRoomBaseFromClient {
+    roomType: RoomTypesEnum
     roomInfo: TicTacToeRoomParams
     isPrivate: boolean
     password?: string
 }
 
-export type TicTacToeRoomParams = {
+// Helpers
+type TicTacToeRoomParams = {
     gridSize: TicTacToeGridSizesEnum
-    valuesInRowToWin: number
+    valuesInRowToFinish: number
 }
 
 export enum RoomTypesEnum {

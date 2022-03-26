@@ -1,14 +1,15 @@
 import { Server, Socket } from 'socket.io'
+import { deleteRoomById } from '@db-api/room'
 import RestartManager from '@services/RestartGameManager'
 
-import { NUMBER_PARTICIPANTS_OF_FULL_TIC_TAC_TOE_ROOM } from '@constants/ticTacToe'
+import { NUMBER_PARTICIPANTS_OF_FULL_TIC_TAC_TOE_ROOM } from '@constants'
 import { TicTacToeActionsEnum } from '@entityTypes/socket'
 import { CellFullData } from '@entityTypes/ticTacToe'
 import { TicTacToePlayer, TicTacToePlayerRoles } from '@entityTypes/ticTacToePlayer'
 import { AllTypesOfPlayers, RestartRoomUsers } from '@entityTypes/restartGame'
 
-import { isTicTacToeRoomFull } from '@utils/socket'
 import { getRandomPlayerRoles } from '@utils/ticTacToe'
+import { isTicTacToeRoomFull, isTicTacToeRoomEmpty } from '@utils/socket'
 
 const initTicTacToeSocket: (io: Server, socket: Socket, roomId: string) => void = (
     io: Server,
@@ -63,6 +64,10 @@ const initTicTacToeSocket: (io: Server, socket: Socket, roomId: string) => void 
     socket.on('disconnect', () => {
         io.to(roomId).emit(TicTacToeActionsEnum.PLAYER_LEAVE_GAME_FROM_SERVER)
         RestartManager.removeRestartGameRoom(roomId)
+
+        if (isTicTacToeRoomEmpty(io, roomId)) {
+            deleteRoomById(roomId)
+        }
     })
 }
 

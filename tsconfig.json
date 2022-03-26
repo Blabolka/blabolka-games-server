@@ -19,7 +19,9 @@
         "resolveJsonModule": true,
         "baseUrl": "./src",
         "paths": {
-            "@constants/*": ["common/constants/*"],
+            "@app": ["index"],
+            "@constants": ["common/constants/index"],
+            "@middleware/*": ["common/middleware/*"],
             "@services/*": ["common/services/*"],
             "@db": ["common/tools/db"],
             "@db-api/*": ["common/tools/databaseApi/*"],

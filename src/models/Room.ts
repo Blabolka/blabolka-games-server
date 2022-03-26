@@ -1,13 +1,13 @@
 import { Schema, model, Model } from 'mongoose'
-import { v4 as uuidv4 } from 'uuid'
+import shortid from 'shortid'
 
-import { RoomModelType, RoomTypesEnum } from '@entityTypes/room'
+import { IRoomModel, RoomTypesEnum } from '@entityTypes/room'
 
 const schema: Schema = new Schema(
     {
         roomId: {
             type: String,
-            default: uuidv4(),
+            default: shortid.generate,
         },
         roomType: {
             type: String,
@@ -22,7 +22,7 @@ const schema: Schema = new Schema(
             type: Boolean,
             required: true,
         },
-        password: {
+        passwordHash: {
             type: String,
             required: false,
         },
@@ -33,6 +33,6 @@ const schema: Schema = new Schema(
     },
 )
 
-const RoomModel: Model<RoomModelType> = model<RoomModelType>('Room', schema)
+const RoomModel: Model<IRoomModel> = model('Room', schema)
 
 export default RoomModel
